@@ -16,5 +16,5 @@ touch traefik.yml
 touch config.yml
 docker network create proxy
 #echo $(htpasswd -nb "<USER>" "<PASSWORD>") | sed -e s/\\$/\\$\\$/g
-''''
+```
 
