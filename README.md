@@ -92,7 +92,7 @@ http://IP:5380
 11. The the Traefik portal is available at
 - https://traefik.HOSTNAME.YourDomain.TLD
 12. Best practice
-- Once access to the Technitium portal via FQDN is available, change line 49 in docker-compose.yml to remove direct access via IP
+- Once access to the Technitium portal via FQDN is available, change line 53 in docker-compose.yml to remove direct access via IP
 ```
       - "5380/tcp"
 ``` 
