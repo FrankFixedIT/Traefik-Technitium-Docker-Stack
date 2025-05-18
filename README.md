@@ -4,7 +4,7 @@ Prerequisites (some may be optional, however, this is the way to guranteed succe
 - Docker installed: https://docs.docker.com/engine/install/debian/
 - Cloudflare as Domain name registrar (I assume others would work as well, google accordingly)
 - Cloudflare API token that has access to Zone Settings:Edit, Zone:Edit, DNS:Edit
-- Proper DNS entries on Cloudflare #To verify you are allowed to do all of this on the domain you are doing it on
+- Proper A record on Cloudflare #Let's Encrypt needs to verify you are allowed to do all of this on the domain that you are doing it on
 - All commands assume root user access, adjust accordingly.
 1. Install apache2-utils for password hash generation. Create folder structure and set permsissions. Create docker network.
 - IMPORTANT: Change PASSWORD to a secure password for the Traefik portal, or your password will be PASSWORD
