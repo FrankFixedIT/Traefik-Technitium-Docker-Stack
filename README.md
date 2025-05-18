@@ -90,7 +90,7 @@ http://IP:5380
 - DNS-over-TLS is available at
 - HOSTANME.YourDomain.TLD:853
 11. The the Traefik portal is available at
-- https://treafik.HOSTNAME.YourDomain.TLD
+- https://traefik.HOSTNAME.YourDomain.TLD
 12. Best practic
 - Once access to the Technitium portal via FQDN is available, change line 49 in docker-compose.yml to remove direct access via IP
 ```
