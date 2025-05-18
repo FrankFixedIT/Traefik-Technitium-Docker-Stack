@@ -70,15 +70,6 @@ https://technitium.HOSTNAME.YourDomain.TLD
 Note, if this is your first DNS server access via:
 http://IP:5380
 ```
-- Bonus points, once access via FQDN is available, change line 49 in docker-compose.yml to remove direct access via IP
-```
-      - "5380/tcp"
-``` 
--Follw this with the follwing to comit the change
-```
-docker compose down && docker compose up -d
-``` 
-
 9. Once you have access to the Technitium portal, the follwing changes must be made to activate DNS-over-TLS and DNS-over-HTTPS
 - Navigate to Settings - Optional Procotolls
 - Enable 'Enable DNS-over-TCP-PROXY' and 'Enable DNS-over-HTTP'
@@ -99,3 +90,12 @@ docker compose down && docker compose up -d
 - HOSTANME.YourDomain.TLD:853
 11. The the Traefik portal is available at
 - https://treafik.HOSTNAME.YourDomain.TLD
+12. Best practic
+- Once access to the Technitium portal via FQDN is available, change line 49 in docker-compose.yml to remove direct access via IP
+```
+      - "5380/tcp"
+``` 
+- Follw this with the follwing to comit the change
+```
+docker compose down && docker compose up -d
+``` 
