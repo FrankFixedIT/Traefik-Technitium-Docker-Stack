@@ -26,21 +26,21 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      - "traefik.http.routers.traefik.rule=Host(`traefik.hostname.yourdomain.tld`)"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.hostname.yourdomain.tld`)
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      - "traefik.http.routers.traefik-secure.tls.domains[0].main=hostname.yourdomain.tld"
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.hostname.yourdomain.tld"
       - "traefik.http.routers.traefik-secure.service=api@internal"
   technitium:
@@ -55,7 +55,7 @@ services:
       - "53:53/udp"
       - "53:53/tcp"
     environment:
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      - DNS_SERVER_DOMAIN=hostname.yourdomain.tld
     volumes:
       - config:/etc/dns
