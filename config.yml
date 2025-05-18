@@ -1,0 +1,111 @@
+http:
+  routers:
+    doh:
+      entryPoints:
+        - "https"
+      rule: "Host(`dns.hostname.yourdomain.tld`) && PathPrefix(`/dns-query`)"
+      middlewares:
+        - default-headers
+        - default-whitelist
+      tls: {}
+      service: doh      
+    technitium:
+      entryPoints:
+        - "https"
+      rule: "Host(`technitium.hostname.yourdomain.tld`)"
+      middlewares:
+        - default-headers
+        - technitium-whitelist
+      tls: {}
+      service: technitium
+  services:
+    doh:
+      loadBalancer:
+        servers:
+          - url: "http://technitium:8081"
+        passHostHeader: true    
+    technitium:
+      loadBalancer:
+        servers:
+          - url: "http://technitium:5380"
+        passHostHeader: true
+  middlewares:
+    https-redirect:
+      redirectScheme:
+        scheme: https
+    technitium-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - 127.0.0.1/32
+          - 10.0.0.0/8
+          - 172.16.0.0/12
+          - 192.168.0.0/16
+    default-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - 10.0.0.0/8
+          - 172.16.0.0/12
+          - 192.168.0.0/16
+    default-headers:
+      headers:
+        frameDeny: true
+        sslRedirect: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+    secured:
+      chain:
+        middlewares:
+        - technitium-whitelist
+        - default-whitelist
+        - default-headers
+tcp:
+  routers:
+    dot:
+      rule: "ClientIP(`10.0.0.0/8`) || ClientIP(`172.16.0.0/12`) || ClientIP(`192.168.0.0./16`)|| ClientIP(`127.0.0.0/8`)"
+      entryPoints:
+        - dot
+      middlewares:
+        - dot-whitelist
+      service: sv-dot
+      tls: {}
+  middlewares:
+    dot-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - "127.0.0.0/8"
+          - "10.0.0.0/8"
+          - "172.16.0.0/12"
+          - 192.168.0.0/16
+  services:
+    sv-dot:
+      loadBalancer:
+        servers:
+          - address: "technitium:538"
+        proxyProtocol:
+          version: 2
+x-intermediate-ciphersuite: &intermediate-ciphersuite-parameters
+  minVersion: VersionTLS12
+  sniStrict: true
+  cipherSuites:
+    - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+    - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+    - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+    - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+    - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+    - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+tls:
+  options:
+    default:
+      <<: *intermediate-ciphersuite-parameters
+    intermediate:
+      <<: *intermediate-ciphersuite-parameters
+    modern:
+      minVersion: VersionTLS13
+      sniStrict: true
