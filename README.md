@@ -6,7 +6,7 @@ Prerequisites (some may be optional, however, this is the way to guranteed succe
 - Cloudflare API token that has access to Zone Settings:Edit, Zone:Edit, DNS:Edit
 - Proper A record on Cloudflare #Let's Encrypt needs to verify you are allowed to do all of this on the domain that you are doing it on (no ports need to opened on the firewall)
 - All commands assume root user access, adjust accordingly.
-1. Install apache2-utils for password hash generation. Create folder structure and set permsissions. Create docker network.
+1. Install apache2-utils for password hash generation. Create folder structure, files and set permsissions. Create docker network.
 - IMPORTANT: Change PASSWORD to a secure password for the Traefik portal, or your password will be PASSWORD
 ```
 apt update
