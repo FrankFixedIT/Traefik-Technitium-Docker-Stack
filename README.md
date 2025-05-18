@@ -65,11 +65,9 @@ docker ps -a
 docker compose logs
 ```
 8. Your Technitium portal should be available at the follwing addesses (providedd you have created the proper A/CNAME DNS entries whever you are currrently hosting DNS):
-```
-https://technitium.HOSTNAME.YourDomain.TLD
-Note, if this is your first DNS server, access via:
-http://IP:5380
-```
+- https://technitium.HOSTNAME.YourDomain.TLD
+- Note, if this is your first DNS server, access via:
+- http://IP:5380
 9. Once you have access to the Technitium portal, the follwing changes must be made to activate DNS-over-TLS and DNS-over-HTTPS
 - Navigate to Settings - Optional Procotolls
 - Enable 'Enable DNS-over-TCP-PROXY' and 'Enable DNS-over-HTTP'
