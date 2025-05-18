@@ -32,7 +32,7 @@ echo $(htpasswd -nb "<USER>" "<PASSWORD>") | sed -e s/\\$/\\$\\$/g
 ```
 <USER>:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 ```
-3. Edit .env file with your favorite editor, mine is nano
+3. Edit .env file with your favorite editor, mine is nano (<a href=https://linuxize.com/post/how-to-use-nano-text-editor>How to use nano</a>)
 ```
 nano .env
 #Paste the below line, update the user to whatever you chose and change the hash (everything right of : ) with the value froom step 2
