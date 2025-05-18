@@ -32,7 +32,7 @@ echo $(htpasswd -nb "<USER>" "<PASSWORD>") | sed -e s/\\$/\\$\\$/g
 ```
 <USER>:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 ```
-- Also, if you didn't change PASSWORD, try the las line again, but be better.
+- Also, if you didn't change PASSWORD, try the las line of the command in step 1 again, but be better.
 3. Edit .env file with your favorite editor, mine is nano (<a href=https://linuxize.com/post/how-to-use-nano-text-editor>How to use nano</a>)
 ```
 nano .env
