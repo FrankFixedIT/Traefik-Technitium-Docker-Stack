@@ -1,12 +1,12 @@
 # Traefik-Technitium-Docker-Stack
 Prerequisites (some may be optional, however, this is the way to guranteed success):
-- Debian 12 (bare metal / kvm / lcx?)
+- Debian 12 (bare metal / kvm / lxc?)
 - Docker installed: https://docs.docker.com/engine/install/debian/
 - Cloudflare as Domain name registrar (I assume others would work as well, google accordingly)
 - Cloudflare API token that has access to Zone Settings:Edit, Zone:Edit, DNS:Edit
 - Proper Domain DNS entries on Cloudflare #To verify you are allowed to do all of this on the domain you are doing it on
 - All commands assume root access, adjust accordingly.
-1. Install apache2-utils for password hash generation. Create folder structure and set permsissions, create docker network.
+1. Install apache2-utils for password hash generation. Create folder structure and set permsissions. Create docker network.
 - IMPORTANT: Change PASSWORD to a secure password for the Traefik portal, or your password will be PASSWORD
 ```
 apt update
@@ -38,13 +38,13 @@ cd..
 4. Edit .env file with your favorite editor, mine is nano
 ```
 nano .env
-#Past the below line, update the user to whatever you chose and change the hash with the value froom step 2
+#Paste the below line, update the user to whatever you chose and change the hash with the value froom step 2
 TRAEFIK_DASHBOARD_CREDENTIALS=user:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 ```
 5. Add Cloudflare API token
 ```
 nano cf_api_token.txt
-#Past your Cloudflare API token
+#Paste your Cloudflare API token
 ```
 6. Next we need to edit 3 files: docker-compose.yml, traefik/config.yml and treafik/traefik.yml. Copy the contents of each file from this repo. Any line that starts with a # needs to be adjusted.
 ```
