@@ -6,7 +6,8 @@ Prerequisites (some may be optional, however, this is the way to guranteed succe
 - Cloudflare API token that has access to Zone Settings:Edit, Zone:Edit, DNS:Edit
 - Proper Domain DNS entries on Cloudflare #To verify you are allowed to do all of this on the domain you are doing it on
 - All commands assume root access, adjust accordingly.
-1. Create folder structure and set permsissions. Change PASSWORD to a secure password for the Traefik portal, or your password will be PASSWORD
+1. Install apache2-utils for password hash generation. Create folder structure and set permsissions, create docker network.
+- IMPORTANT: Change PASSWORD to a secure password for the Traefik portal, or your password will be PASSWORD
 ```
 apt update
 apt install apache2-utils -y
@@ -54,14 +55,30 @@ nano treafik/traefik.yml
 7. Bring up the stack and cross our fingers
 ```
 docker compose up -d
-``` 
-8. Your stack should be available at the follwing addesses (providedd you have create the proper DNS entries whever you are currrently hosting DNS):
 ```
-#Technitium portal:
+- Use the below command to verify everything is up
+```
+docker ps -a
+```
+- Use the below command for basic troubleshooting
+ ```
+docker compose logs
+```
+8. Your Technitium portal should be available at the follwing addesses (providedd you have create the proper DNS entries whever you are currrently hosting DNS):
+```
 https://technitium.HOSTNAME.YourDomain.TLD
 Note, if this is your first DNS server access via:
 http://IP:5380
 ```
+- Bonus points, once access via FQDN is available, change line 49 in docker-compose.yml to remove direct access via IP
+```
+      - "5380/tcp"
+``` 
+-Follw this with the follwing to comit the change
+```
+docker compose down && docker compose up -d
+``` 
+
 9. Once you have access to the Technitium portal, the follwing changes must be made to activate DNS-over-TLS and DNS-over-HTTPS
 - Navigate to Settings - Optional Procotolls
 - Enable 'Enable DNS-over-TCP-PROXY' and 'Enable DNS-over-HTTP'
@@ -75,8 +92,10 @@ http://IP:5380
 127.0.0.0/8
 ```
 - Save settings
-10. Now DNS-over-TLS and DNS-over-HTTPS should be available for clients.
+10. Now DNS-over-TLS and DNS-over-HTTPS are be available for clients.
 - #DNS-overHTTPS Quieres as available at
 - https://dns.HOSTNAME.YourDomain.TLD
 - DONS-over-TLS port is available at
 - HOSTANME.YourDomain.TLD:853
+11. The the Traefik portal is available at
+- https://treafik.HOSTNAME.YourDomain.TLD
