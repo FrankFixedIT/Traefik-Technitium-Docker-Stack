@@ -8,6 +8,8 @@ cd docker
 touch docker-compose.yml
 touch cf_api_token.txt
 touch .env
+chmod 600 .nev
+chmod 600 cf_afi_token.txt
 mkdir traefik
 cd traefik
 touch acme.json
