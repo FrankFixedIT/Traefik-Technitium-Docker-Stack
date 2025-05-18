@@ -46,7 +46,7 @@ TRAEFIK_DASHBOARD_CREDENTIALS=user:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 nano cf_api_token.txt
 #Paste your Cloudflare API token
 ```
-6. Next we need to edit 3 files: docker-compose.yml, traefik/config.yml and treafik/traefik.yml. Copy the contents of each file from this repo. Any line that starts with a # needs to be adjusted and have the initial # removed. Any line that starts with ## is a hint.
+6. Next we need to edit 3 files: docker-compose.yml, traefik/config.yml and treafik/traefik.yml. Copy the contents of each file from this repo. Any line that starts with a # needs to be adjusted and have the # removed. Any line that starts with ## is a hint for what follows.
 ```
 nano docker-compose.yml
 nano treafik/config.yml
