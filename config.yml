@@ -3,7 +3,7 @@ http:
     doh:
       entryPoints:
         - "https"
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      rule: "Host(`dns.hostname.yourdomain.tld`) && PathPrefix(`/dns-query`)"
       middlewares:
         - default-headers
@@ -13,7 +13,7 @@ http:
     technitium:
       entryPoints:
         - "https"
-#Edit hostname.yourdomain.tld
+##Edit hostname.yourdomain.tld
 #      rule: "Host(`technitium.hostname.yourdomain.tld`)"
       middlewares:
         - default-headers
@@ -38,7 +38,7 @@ http:
     technitium-whitelist:
       ipWhiteList:
         sourceRange:
-#Adjust to restirct access to Technitium portal
+##Adjust to restirct access to Technitium portal
           - 127.0.0.1/32
           - 10.0.0.0/8
           - 172.16.0.0/12
@@ -46,7 +46,7 @@ http:
     default-whitelist:
       ipWhiteList:
         sourceRange:
-#Adjust to restict access to DNS-over-HTTPS
+##Adjust to restict access to DNS-over-HTTPS
           - 10.0.0.0/8
           - 172.16.0.0/12
           - 192.168.0.0/16
@@ -72,7 +72,7 @@ http:
 tcp:
   routers:
     dot:
-#Adjust if needed, i.e. for public deployment
+##Adjust if needed, i.e. for public deployment
       rule: "ClientIP(`10.0.0.0/8`) || ClientIP(`172.16.0.0/12`) || ClientIP(`192.168.0.0./16`)|| ClientIP(`127.0.0.0/8`)"
       entryPoints:
         - dot
@@ -84,7 +84,7 @@ tcp:
     dot-whitelist:
       ipWhiteList:
         sourceRange:
-#Adjust to restict access to DNS-over-TLS
+##Adjust to restict access to DNS-over-TLS
           - "127.0.0.0/8"
           - "10.0.0.0/8"
           - "172.16.0.0/12"
