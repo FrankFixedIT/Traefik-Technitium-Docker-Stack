@@ -19,7 +19,7 @@ providers:
 certificatesResolvers:
   cloudflare:
     acme:
-#Edit email address
+##Edit email address
 #      email: admin@yourdomain.tld
       storage: acme.json
       caServer: https://acme-v02.api.letsencrypt.org/directory
