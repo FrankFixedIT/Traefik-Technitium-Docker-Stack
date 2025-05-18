@@ -1,8 +1,10 @@
 # Traefik-Technitium-Docker-Stack
-Prerequisites (some may be optional, however this is the way to guranteed success):
--Debian 12 (bare metal / kvm / lcx?)
--Docker installed: https://docs.docker.com/engine/install/debian/
--All commands assume root access, adjust accordingly.
+Prerequisites (some may be optional, however, this is the way to guranteed success):
+- Debian 12 (bare metal / kvm / lcx?)
+- Docker installed: https://docs.docker.com/engine/install/debian/
+- Cloudflare as Domain name registrar (I assume others would work as well)
+- Cloudflare API token that has access to Zone Settings:Edit, Zone:Edit, DNS:Edit
+- All commands assume root access, adjust accordingly.
 1. Create folder structure and set permsissions. Change PASSWORD to a secure password for the Traefik portal, or your password will be PASSWORD!
 ```
 apt update
@@ -27,3 +29,8 @@ echo $(htpasswd -nb "<USER>" "<PASSWORD>") | sed -e s/\\$/\\$\\$/g
 ```
 <USER>:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 ```
+3. Move back to docker root folder
+```
+cd..
+```
+4. 
