@@ -96,7 +96,7 @@ http://IP:5380
 ```
       - "5380/tcp"
 ``` 
-- Follw this with the follwing to comit the change
+- Ccomit the change
 ```
 docker compose down && docker compose up -d
 ``` 
