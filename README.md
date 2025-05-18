@@ -23,7 +23,7 @@ touch config.yml
 docker network create proxy
 echo $(htpasswd -nb "<USER>" "<PASSWORD>") | sed -e s/\\$/\\$\\$/g
 ```
-Copy the value on the lasta line of the output. If you didn't change PASSWORD, your output should be
+2. Copy the value on the lasta line of the output. If you didn't change PASSWORD, your output should be
 ```
 <USER>:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 ```
