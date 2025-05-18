@@ -53,7 +53,7 @@ nano treafik/traefik.yml
 ``` 
 7. Bring up the stack and cross our fingers
 ```
-dockercompose up -d
+docker compose up -d
 ``` 
 8. Your stack should be available at the follwing addesses (providedd you have create the proper DNS entries whever you are currrently hosting DNS):
 ```
