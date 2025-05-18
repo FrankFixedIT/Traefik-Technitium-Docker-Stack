@@ -90,7 +90,7 @@ docker compose logs
 11. The Traefik portal is available at
 - https://traefik.HOSTNAME.YourDomain.TLD
 12. Best practice
-- Once access to the Technitium portal via FQDN is available (A/CNAME records on your newly creataed zone in Technitium (I hope, or why are even doing this?)), change line 53 in docker-compose.yml to remove direct access via IP
+- Once access to the Technitium portal via FQDN is available (A/CNAME records in your newly creataed zone on Technitium (I hope, or why are even doing this?)), change line 53 in docker-compose.yml to remove direct access via IP
 ```
       - "5380/tcp"
 ``` 
