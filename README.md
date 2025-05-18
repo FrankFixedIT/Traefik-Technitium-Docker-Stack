@@ -15,7 +15,7 @@ touch docker-compose.yml
 touch cf_api_token.txt
 touch .env
 chmod 600 .nev
-chmod 600 cf_afi_token.txt
+chmod 600 cf_api_token.txt
 mkdir traefik
 cd traefik
 touch acme.json
@@ -33,4 +33,16 @@ echo $(htpasswd -nb "<USER>" "<PASSWORD>") | sed -e s/\\$/\\$\\$/g
 ```
 cd..
 ```
-4. 
+4. Edit .env file with your favorite editor, mine is nano
+```
+nano .env
+#Past the below line, update the user to whatever you chose and change the hash with the value froom step 2
+TRAEFIK_DASHBOARD_CREDENTIALS=user:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
+```
+5. Update Cloudflare API key
+
+```
+nano cf_api_token.txt
+#Past your Cloudflare API token
+```
+6. 
