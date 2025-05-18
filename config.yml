@@ -3,7 +3,8 @@ http:
     doh:
       entryPoints:
         - "https"
-#      rule: "Host(`dns.hostname.yourdomain.tld`) && PathPrefix(`/dns-query`)"#Edit hostname.yourdomain.tld
+#Edit hostname.yourdomain.tld
+#      rule: "Host(`dns.hostname.yourdomain.tld`) && PathPrefix(`/dns-query`)"
       middlewares:
         - default-headers
         - default-whitelist
@@ -12,7 +13,8 @@ http:
     technitium:
       entryPoints:
         - "https"
-#      rule: "Host(`technitium.hostname.yourdomain.tld`)"#Edit hostname.yourdomain.tld
+#Edit hostname.yourdomain.tld
+#      rule: "Host(`technitium.hostname.yourdomain.tld`)"
       middlewares:
         - default-headers
         - technitium-whitelist
