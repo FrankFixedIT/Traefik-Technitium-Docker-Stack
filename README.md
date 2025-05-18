@@ -77,6 +77,7 @@ http://IP:5380
 - Set 'DNS-over-HTTP Port' to 8081
 - Add 'Reverse Proxy Network ACL'
 ```
+#Adjust as needed
 10.0.0.0/8
 172.16.0.0/12
 192.168.0.0./16
