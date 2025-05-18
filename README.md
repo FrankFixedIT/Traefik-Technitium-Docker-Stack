@@ -84,7 +84,7 @@ http://IP:5380
 127.0.0.0/8
 ```
 - Save settings
-10. Now DNS-over-TLS and DNS-over-HTTPS are be available for clients.
+10. Now DNS-overUDP/TCP, DNS-over-TLS and DNS-over-HTTPS are be available for clients.
 - DNS-over-HTTPS is available at
 - https://dns.HOSTNAME.YourDomain.TLD/dns-query
 - DNS-over-TLS is available at
