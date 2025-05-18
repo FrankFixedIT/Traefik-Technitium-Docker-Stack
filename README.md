@@ -38,7 +38,7 @@ cd..
 4. Edit .env file with your favorite editor, mine is nano
 ```
 nano .env
-#Paste the below line, update the user to whatever you chose and change the hash with the value froom step 2
+#Paste the below line, update the user to whatever you chose and change the hash (everything right of : ) with the value froom step 2
 TRAEFIK_DASHBOARD_CREDENTIALS=user:$$apr1$$jFLLLiFS$$p4Lg.v3jiAwzu//15h7fn0
 ```
 5. Add Cloudflare API token
@@ -96,7 +96,7 @@ http://IP:5380
 ```
       - "5380/tcp"
 ``` 
-- Ccomit the change
+- Commit the change
 ```
 docker compose down && docker compose up -d
 ``` 
