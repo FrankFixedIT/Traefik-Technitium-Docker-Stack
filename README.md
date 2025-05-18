@@ -85,9 +85,9 @@ http://IP:5380
 ```
 - Save settings
 10. Now DNS-over-TLS and DNS-over-HTTPS are be available for clients.
-- #DNS-overHTTPS Quieres as available at
-- https://dns.HOSTNAME.YourDomain.TLD
-- DONS-over-TLS port is available at
+- DNS-over-HTTPS is available at
+- https://dns.HOSTNAME.YourDomain.TLD/dns-query
+- DNS-over-TLS is available at
 - HOSTANME.YourDomain.TLD:853
 11. The the Traefik portal is available at
 - https://treafik.HOSTNAME.YourDomain.TLD
