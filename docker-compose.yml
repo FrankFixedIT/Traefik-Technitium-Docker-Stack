@@ -1,0 +1,66 @@
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+      - 853:853
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      CF_DNS_API_TOKEN_FILE: /run/secrets/cf_api_token
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
+    secrets:
+      - cf_api_token
+    env_file: .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/traefik.yml:ro
+      - ./traefik/acme.json:/acme.json
+      - ./traefik/config.yml:/config.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.hostname.yourdomain.tld`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.hostname.yourdomain.tld`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=hostname.yourdomain.tld"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.hostname.yourdomain.tld"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+  technitium:
+    container_name: technitium
+    hostname: technitium
+    image: technitium/dns-server:latest
+    networks:
+      - proxy
+    ports:
+      - "5380/tcp"
+      - "53:53/udp"
+      - "53:53/tcp"
+    environment:
+      - DNS_SERVER_DOMAIN=hostname.yourdomain.tld
+    volumes:
+      - config:/etc/dns
+    restart: unless-stopped
+    sysctls:
+      - net.ipv4.ip_local_port_range=1024 65000
+secrets:
+  cf_api_token:
+    file: ./cf_api_token.txt
+networks:
+  proxy:
+    external: true
+volumes:
+    config:
